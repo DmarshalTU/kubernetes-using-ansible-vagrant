@@ -5,6 +5,9 @@ The aim of this project is having a one line command for lifting a kubernetes cl
 
 forked from https://github.com/borjatur/kubernetes-using-ansible-vagrant
 
+2019 - Kubernetes Setup Using Ansible and Vagrant
+https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
+
 ## Few changes that I made to run it on my Ubuntu-20.04 machine
 1.  changed the bento/ubntu version to 20.04 => IMAGE_NAME = "bento/ubuntu-20.04"
  why?
