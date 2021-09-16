@@ -9,7 +9,7 @@ forked from https://github.com/borjatur/kubernetes-using-ansible-vagrant
 1.  changed the bento/ubntu version to 20.04 => IMAGE_NAME = "bento/ubuntu-20.04"
  why?
  there was a bug due to this ticket https://www.virtualbox.org/ticket/16670:
- ```
+ ```bash
  Vagrant was unable to mount VirtualBox shared folders. This is usually
 because the filesystem "vboxsf" is not available. This filesystem is
 made available via the VirtualBox Guest Additions and kernel module.
@@ -22,13 +22,15 @@ mount -t vboxsf -o uid=1000,gid=1000 vagrant /vagrant
 The error output from the command was:
 
 /sbin/mount.vboxsf: mounting failed with the error: No such device
+```
 
- ```
+ 
  so update of vagrant, vb and the nodes image for me was the best fix and no got and manually change ln or install plugins
  
- 2. TASK [./roles/worker-node : Copy the join command to server location] **********
+ 1. TASK [./roles/worker-node : Copy the join command to server location] **********
   rises en error:
-  ```
+
+```bash
   An exception occurred during task execution. 
 To see the full traceback, use -vvv. 
 The error was: 
@@ -45,14 +47,15 @@ Searched in:\n\t
 /home/dev/Documents/kubernetes-using-ansible-vagrant/kubernetes-setup/files/./output/join-command\n\t
 /home/dev/Documents/kubernetes-using-ansible-vagrant/kubernetes-setup/./output/join-command on the Ansible Controller.\n
 If you are using a module and expect the file to exist on the remote, see the remote_src option"
+```
 
-  ```
+  
   after littel research, in file master-node/tasks/main.yml:
   - name: Copy join command to local file
   copy: content="{{ join_command.stdout_lines[0] }}" dest="./output/join-command"
   delegate_to: 127.0.0.1
   become: false
-  
+  ```bash
   Copy method not created the 'join-command file'
   and from ansible docks:
   If C(directory), all immediate subdirectories will be created if they do not exist.\nIf C(file), the file will NOT be created if it does not exist, see the M(copy) or M(template) module if you want that behavior.  If C(absent), directories will be recursively deleted, and files will be removed.\nIf C(touch), an empty file will be created if the C(path) does not exist, while an existing file or directory will receive updated file access and modification times (similar to the way C(touch) works from the command line).
