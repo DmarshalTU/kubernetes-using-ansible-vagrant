@@ -248,4 +248,13 @@ ok: [node-1]
 
 PLAY RECAP *********************************************************************
 node-1                     : ok=16   changed=14   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
 
+```bash
+$ vagrant status
+Current machine states:
+
+k8s-master                running (virtualbox)
+node-1                    running (virtualbox)
+
+```
