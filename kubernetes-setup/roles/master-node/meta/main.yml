@@ -1,7 +1,7 @@
 galaxy_info:
-  author: borja.tur@gmail.com
+  author: dmarshaltu@gmail.com
   description: group of task for configuring a kubernetes master node
-  company: your company (optional)
+  company: DMT
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
