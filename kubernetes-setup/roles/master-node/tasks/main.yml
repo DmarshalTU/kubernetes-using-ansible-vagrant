@@ -30,3 +30,23 @@
     src: /etc/kubernetes/admin.conf
     dest: ./output/config
     flat: yes
+
+- name: Add an apt signing key for HELM
+  apt_key:
+    url: https://baltocdn.com/helm/signing.asc
+    state: present
+
+- name: Adding apt repository for HELM
+  apt_repository:
+    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+    state: present
+    filename: helm-stable-debian.list
+
+- name: Install HELM
+  apt: 
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - helm
