@@ -9,3 +9,6 @@
 - name: Join the node to cluster
   command: sh /tmp/join-command.sh
 
+- name: Download docker image
+  command: docker pull dmarshaltu/test-app
+
